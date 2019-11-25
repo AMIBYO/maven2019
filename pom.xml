@@ -8,13 +8,74 @@
     <artifactId>mypro</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-          <plugins>
-        <plugin>
-          <groupId>org.Apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
-        </plugin>
-  </plugins>
+      < build >
+    < pluginManagement >
+      < plugins >
+        < plugin >
+          < artifactId > maven-deploy-plugin </ artifactId >
+          < version > 2.8.2 </ version >
+        </ plugin >
+		 < plugin >
+          < artifactId > maven-clean-plugin </ artifactId >
+          < version > 3.1.0 </ version >
+        </ plugin >
+	      
+        <! - cycle de vie par défaut, emballage JAR: voir https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging ->
+        < plugin >
+          < artifactId > plug-in maven-resources </ artifactId >
+          < version > 3.0.2 </ version >
+        </ plugin >
+        < plugin >
+          < artifactId > maven-compiler-plugin </ artifactId >
+          < version > 3.8.0 </ version >
+        </ plugin >
+		< pluginRepositories >
+    < pluginRepository >
+
+	    < id > apache.snapshots </ id >
+        < name > Instantanés Apache </ name >
+        < url > http://repository.apache.org/content/groups/snapshots-group/ </ url >
+        < communiqués >
+            < enabled > true </ enabled >
+        </ releases >
+        < instantanés >
+            < enabled > true </ enabled >
+        </ snapshots >
+    </ pluginRepository >
+</ pluginRepositories >
+        < plugin >
+          < artifactId > maven-surefire-plugin </ artifactId >
+          < version > 2.22.1 </ version >
+        </ plugin >
+        < plugin >
+          < artifactId > maven-jar-plugin </ artifactId >
+          < version > 3.0.2 </ version >
+        </ plugin >
+        < plugin >
+          < artifactId > plug-in maven-install </ artifactId >
+          < version > 2.5.2 </ version >
+        </ plugin >
+        < plugin >
+          < artifactId > maven-deploy-plugin </ artifactId >
+          < version > 2.8.2 </ version >
+< configuration >
+    < skip > true </ skip>
+  </ configuration>
+	      </ plugin >
+        <! - cycle de vie du site, voir https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle ->
+        < plugin >
+          < artifactId > plugin maven-site </ artifactId >
+          < version > 3.7.1 </ version >
+        </ plugin >
+        < plugin >
+          < artifactId > maven-project-info-reports-plugin </ artifactId >
+          < version > 3.0.0 </ version >
+        </ plugin >
+      </ plugins >
+    </ pluginManagement >
+
+     <! - le reste de votre configuration de build et de plugin ->
+   </ build >
     <distributionManagement>
         <snapshotRepository>
             <id>nexus-snapshots</id>
